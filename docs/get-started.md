@@ -1,6 +1,9 @@
 ##开始使用Hiano
->开始前，请先安装[composer](https://getcomposer.org/)
-###创建你的第一个App
+
+>开始前，请确保您已经安装[composer](https://getcomposer.org/)、svn以及Git。
+
+###1、创建你的第一个App
+
 在命令行下，执行下面的这条命令
 
     >composer create-project kasonyang/hiano-app
@@ -32,27 +35,32 @@ composer将会在当前目录下初始化一个新的工程，目录名为`hiano
         /www                                 #公开文件目录
             ...
 
-###让你的App跑起来
-####Nginx的配置方法
-将如下配置添加到Nginx的配置文件里，注意填写`hiano/www`的完整路径
+###2、让你的App跑起来
 
-    location / {
-        root path/to/hiano-app/www;#请填写hiano/www的完整路径
-        if (!-f $request_filename){
-            rewrite (.*) /index.php;
+* Nginx的配置方法
+
+    将如下配置添加到Nginx的配置文件里，注意填写`hiano/www`的完整路径
+
+        location / {
+            root path/to/hiano-app/www;#请填写hiano-app/www的完整路径
+            if (!-f $request_filename){
+                rewrite (.*) /index.php;
+            }
         }
-    }
-    location ~ \.php$ {
-        root           path/to/hiano-app/www;#请填写hiano/www的完整路径
-        fastcgi_pass   127.0.0.1:3000;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME $document_root/$fastcgi_script_name;
-        include        fastcgi_params;
-    }
+        location ~ \.php$ {
+            root           path/to/hiano-app/www;#请填写hiano-app/www的完整路径
+            fastcgi_pass   127.0.0.1:3000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+            include        fastcgi_params;
+        }
 
-####Apache的配置方法
-请确保您的Apache支持.htaccess文件配置且已开启mod_rewrite模块
+* Apache的配置方法
 
-将目录`hiano-app\www`的完整路径设置为Apache的DocumentRoot，并为该目录设置相应的权限即可，具体设置方法请查看Apache的官方文档。
+    >请确保您的Apache支持.htaccess文件配置且已开启mod_rewrite模块
 
-    
+    将目录`hiano-app/www`的完整路径设置为Apache的DocumentRoot，并为该目录设置相应的权限即可，具体设置方法请查看Apache的官方文档。
+
+###3、浏览你的网站
+
+现在打开浏览器，在地址栏输入localhost，假设你的端口是80的话，Enter,现在网站已经能够成功运行了。
