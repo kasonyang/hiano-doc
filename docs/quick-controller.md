@@ -33,6 +33,30 @@
 
     不显示视图，返回值已字符串形式返回给浏览器
 
+###6、访问视图
+
+控制器通过基类`\Hiano\Controller\Controller`的成员变量`view`或成员方法`getView()`访问视图。
+
+示例：IndexController.php
+
+    function indexAction(){
+        $this->view->set('title','欢迎使用Hiano');//向视图设置一个名为title的变量
+    }
+
+###7、访问请求参数
+
+控制器通过基类`\Hiano\Controller\Controller`的成员变量`request`或成员方法`getRequest()`访问请求参数。
+
+示例：IndexController.php
+
+    function indexAction(){
+        $params = $this->request->getParameter();//读取所有Query参数的数组
+        $id = $this->request->getParameter('id');//读取名称为id的参数
+        $post = $this->request->getPost();//读取POST表单的数组
+        $name = $this->request->getPost('name');//读取POST表单中的名称为name的参数
+    }
+
+
 
 控制器类示例
 
