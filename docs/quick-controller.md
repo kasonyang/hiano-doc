@@ -15,6 +15,25 @@
 
 动作为控制器里的一个方法，必须为public类型的方法，命名规则为`xxxAction`，xxx为动作名。
 
+>动作可以为空，即什么也不做，但是动作对应的视图还是会显示！
+
+###5、动作的返回值
+
+动作的返回值类型可以为以下几种
+
+* null 或 无返回值
+
+    视图正常显示
+
+* FALSE
+
+    不显示视图
+
+* string
+
+    不显示视图，返回值已字符串形式返回给浏览器
+
+
 控制器类示例
 
 HianoApp/Controller/Home/IndexController.php
@@ -25,7 +44,13 @@ HianoApp/Controller/Home/IndexController.php
     class IndexController extends \Hiano\Controller\Controller{
         //index动作
         function indexAction(){
-            //do nothing
+            //什么都不做，视图会显示
+        }
+        function demoAction(){
+            return false;//返回false，视图则不显示
+        }
+        function helloAction(){
+            return 'hello';//输出"hello",不显示视图
         }
     }
 
