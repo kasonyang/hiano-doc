@@ -11,7 +11,7 @@
 
 视图文件示例
 
-HianoApp/View/Home/Index/index.php
+HianoApp/View/Home/Index/index.tpl
 
     <html>
         <body>
